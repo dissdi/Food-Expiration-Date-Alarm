@@ -46,7 +46,7 @@ public class CaptureActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.capture_activity);
+        setContentView(R.layout.activity_capture);
 
         ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, 10);
         btnCapture = findViewById(R.id.btn_capture);
@@ -85,7 +85,7 @@ public class CaptureActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                Intent captureIntent = new Intent(getBaseContext(), CaptureActivity.class);
+                Intent captureIntent = new Intent(getBaseContext(), CheckingActivity.class);
                 startActivity(captureIntent);
 
                 // Order foods by their left date
