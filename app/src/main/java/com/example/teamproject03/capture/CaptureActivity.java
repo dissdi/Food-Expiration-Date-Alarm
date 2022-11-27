@@ -88,6 +88,9 @@ public class CaptureActivity extends AppCompatActivity {
                 Intent captureIntent = new Intent(getBaseContext(), CheckingActivity.class);
                 startActivity(captureIntent);
 
+
+                // 여기 밑으로는 다 다른 클래스로 옮겨야할 코드들
+
                 // Order foods by their left date
                 // get right index for new food
                 int index = 0;
