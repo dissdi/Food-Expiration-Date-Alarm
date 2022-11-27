@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/Projects/TeamProject03/app/src/main/res/layout/activity_main.xml" value="0.2140625" />
+        <entry key="..\:/Android/Projects/TeamProject03/app/src/main/res/layout/capture_activity.xml" value="0.22" />
+        <entry key="..\:/Android/Projects/TeamProject03/app/src/main/res/layout/food_button_basic.xml" value="0.2140625" />
+        <entry key="..\:/Android/Projects/TeamProject03/app/src/main/res/layout/food_information.xml" value="0.2140625" />
         <entry key="..\:/Android/TeamProject03/app/src/main/res/drawable-anydpi/ic_delete_white.xml" value="0.2105" />
         <entry key="..\:/Android/TeamProject03/app/src/main/res/drawable-anydpi/ic_plus.xml" value="0.29" />
         <entry key="..\:/Android/TeamProject03/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.343" />
@@ -20,7 +24,7 @@
         <entry key="..\:/Android/TeamProject03/app/src/main/res/drawable/shape_capsule_no_stroke.xml" value="0.151" />
         <entry key="..\:/Android/TeamProject03/app/src/main/res/drawable/shape_capsule_nostroke.xml" value="0.151" />
         <entry key="..\:/Android/TeamProject03/app/src/main/res/drawable/shape_capsule_rotten.xml" value="0.2045" />
-        <entry key="..\:/Android/TeamProject03/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Android/TeamProject03/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Android/TeamProject03/app/src/main/res/layout/carefull_shape.xml" value="0.20208333333333334" />
         <entry key="..\:/Android/TeamProject03/app/src/main/res/layout/food.xml" value="0.34270833333333334" />
         <entry key="..\:/Android/TeamProject03/app/src/main/res/layout/food_button.xml" value="0.34270833333333334" />
