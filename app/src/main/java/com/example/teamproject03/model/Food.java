@@ -17,7 +17,7 @@ public class Food {
 //        this.buyDate = buyDate;
 //        this.curDate = buyDate; // change later
 //        this.dueDate = dueDate;
-        setLeftDate();
+//        setLeftDate();
         setDescription();
         setColor();
     }

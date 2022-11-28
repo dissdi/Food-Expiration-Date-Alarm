@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <ImageView
-            android:id="@+id/imageDelete"
+            android:id="@+id/fix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_delete"
@@ -14,7 +14,9 @@
             android:layout_height="30dp"
             android:layout_width="0dp"
             android:layout_weight="20"
+            android:text=""
             android:gravity="center"
+            android:id="@+id/name"
     />
     <Spinner
             android:layout_height="30dp"
@@ -24,11 +26,18 @@
             android:spinnerMode="dropdown"
             android:id="@+id/spinner"
     />
-    <TextView
-            android:layout_height="30dp"
-            android:layout_width="0dp"
-            android:layout_weight="5"
-            android:text="마감임박"
-            android:gravity="center"
-    />
+    <LinearLayout
+        android:layout_height="30dp"
+        android:layout_width="0dp"
+        android:layout_weight="5"
+        android:gravity="center"
+    >
+        <CheckBox
+                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:id="@+id/checkBox"
+        />
+
+    </LinearLayout>
+
 </LinearLayout>

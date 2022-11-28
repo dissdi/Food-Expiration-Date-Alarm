@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/TeamProject03" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/how-to-use-git-and-github-in-a-team-like-a-pro" vcs="Git" />
   </component>
 </project>

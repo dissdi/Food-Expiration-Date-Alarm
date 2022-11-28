@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="storage_array">
+        <item>냉장</item>
+        <item>냉동</item>
+    </string-array>
+</resources>
