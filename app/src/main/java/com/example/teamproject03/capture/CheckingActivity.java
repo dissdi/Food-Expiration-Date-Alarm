@@ -85,7 +85,7 @@ public class CheckingActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), CaptureActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                // check each food's information(due date, storage type, etc...)
+                // update database with each food's information(due date, storage type, etc...)
 
                 // add SQL food items
 
