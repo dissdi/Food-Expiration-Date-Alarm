@@ -2,38 +2,40 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="40dp">
     <ImageView
-            android:id="@+id/fix"
+            android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_delete"
             android:layout_gravity="center"
     />
-    <TextView
-            android:layout_height="30dp"
+    <EditText
+            android:layout_height="match_parent"
+            android:textSize="13sp"
             android:layout_width="0dp"
-            android:layout_weight="20"
+            android:layout_weight="22"
             android:text=""
-            android:gravity="center"
+            android:gravity="center_vertical|start"
             android:id="@+id/name"
     />
     <Spinner
-            android:layout_height="30dp"
-            android:layout_width="0dp"
-            android:layout_weight="5"
-            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_width="10dp"
+            android:layout_weight="6"
             android:spinnerMode="dropdown"
+            android:gravity="center"
+            android:padding="2dp"
             android:id="@+id/spinner"
     />
     <LinearLayout
-        android:layout_height="30dp"
+        android:layout_height="match_parent"
         android:layout_width="0dp"
         android:layout_weight="5"
         android:gravity="center"
     >
         <CheckBox
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_width="wrap_content"
                 android:id="@+id/checkBox"
         />

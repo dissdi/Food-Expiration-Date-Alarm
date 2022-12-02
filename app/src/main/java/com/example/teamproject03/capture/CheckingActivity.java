@@ -38,7 +38,15 @@ public class CheckingActivity extends AppCompatActivity {
         for(int i=0; i<captureList.size(); i++){
             LinearLayout foodLayout = (LinearLayout) inflater.inflate
                     (R.layout.capture_food_button, scrollLinearLayout, false);
-            ((TextView)foodLayout.findViewById(R.id.name)).setText(captureList.get(i));
+            ((EditText)foodLayout.findViewById(R.id.name)).setText(captureList.get(i));
+            ImageView deleteIcon = (ImageView)foodLayout.findViewById(R.id.delete);
+            deleteIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    scrollLinearLayout.removeView(foodLayout);
+                }
+            });
+
             Spinner spinner = (Spinner)foodLayout.findViewById(R.id.spinner);
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
                     (this, R.array.storage_array, android.R.layout.simple_spinner_item);
