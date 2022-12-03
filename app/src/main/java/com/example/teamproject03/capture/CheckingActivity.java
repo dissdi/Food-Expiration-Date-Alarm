@@ -1,6 +1,7 @@
 package com.example.teamproject03.capture;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,9 +11,12 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.teamproject03.MainActivity;
 import com.example.teamproject03.R;
+import com.example.teamproject03.data.DatabaseHelper;
+import com.example.teamproject03.model.Food;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CheckingActivity extends AppCompatActivity {
     LinearLayout scrollLinearLayout;
@@ -81,13 +85,35 @@ public class CheckingActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CaptureActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 // update database with each food's information(due date, storage type, etc...)
-
+                ArrayList<Food> foodList = new ArrayList<>();
+                int count = scrollLinearLayout.getChildCount();
+                View v = null;
+                for(int i=0; i<count; i++){
+                    v = scrollLinearLayout.getChildAt(i);
+                    String name = ((EditText)v.findViewById(R.id.name)).getText().toString();
+                    String storageType = ((Spinner)v.findViewById(R.id.spinner)).getSelectedItem().toString();
+                    boolean cautionChecked = ((CheckBox)v.findViewById(R.id.checkBox)).isChecked();
+                    Food f = new Food(name);
+                    f.setStorageType(storageType);
+                    // Left date 몇일이었더라?
+                    if(cautionChecked) f.setLeftDate(10);
+                    f.setLeftDate(getLeftDate(name));
+                    foodList.add(f);
+                }
                 // add SQL food items
+                DatabaseHelper foodDBHelper = new DatabaseHelper(getApplicationContext());
+                SQLiteDatabase db = foodDBHelper.getWritableDatabase();
+                Collections.sort(foodList, new Comparator<Food>() {
+                    @Override
+                    public int compare(Food o1, Food o2) {
+                        return o1.getLeftDate().compareTo(o2.getLeftDate());
+                    }
+                });
 
                 startActivity(intent);
             }
@@ -96,5 +122,11 @@ public class CheckingActivity extends AppCompatActivity {
 
 
 
+    }
+
+    int getLeftDate(String name){
+        // 함수 구현 필요 mapping해서 거시기하기
+        int date = 10;
+        return date;
     }
 }
