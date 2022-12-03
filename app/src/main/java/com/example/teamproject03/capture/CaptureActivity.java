@@ -38,11 +38,6 @@ public class CaptureActivity extends AppCompatActivity {
     private PreviewView previewView;
     private Button btnCapture;
 
-    ArrayList<String> captureList = new ArrayList<String>();
-    LinearLayout linearLayout = MainActivity.linearLayout;
-    LayoutInflater inflater = MainActivity.inflater;
-    ArrayList<Food> foodList = MainActivity.foodList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,128 +74,22 @@ public class CaptureActivity extends AppCompatActivity {
                 Log.d("base64", imgToBase64);
                 CURLThread curlThread = new CURLThread(imgToBase64);
                 curlThread.start();
-                captureList.addAll(curlThread.getResult());
+
                 try {
                     curlThread.join();
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+                ArrayList<String> captureList = curlThread.getResult();
+                // send food data
                 Intent captureIntent = new Intent(getBaseContext(), CheckingActivity.class);
+                captureIntent.putExtra("captureList", captureList);
                 startActivity(captureIntent);
 
 
                 // 여기 밑으로는 다 다른 클래스로 옮겨야할 코드들
 
-                // Order foods by their left date
-                // get right index for new food
-                int index = 0;
-                for(String foodName : captureList)
-                if(foodList.isEmpty()) foodList.add(new Food(foodName));
-                else {
-                    Comparator<Food> fComparator = new Comparator<Food>() {
-                        @Override
-                        public int compare(Food f1, Food f2) {
-                            if(f1.getLeftDate()==f2.getLeftDate())
-                                return f1.getName().compareTo(f2.getName());
-                            return f1.getLeftDate().compareTo(f2.getLeftDate());
-                        }
-                    };
-                    index = Collections.binarySearch(foodList, f, fComparator);
-                    if(index < 0) {
-                        index *= -1;
-                        index--;
-                    }
-                    foodList.add(index, f);
-                }
-
-                // add food
-                LinearLayout foodLayout = inflateFoodButton(linearLayout, inflater, f);
-                ((TextView)foodLayout.getChildAt(1)).setText(String.format("%d일",f.getLeftDate()));
-                ((TextView)foodLayout.getChildAt(2)).setText(String.valueOf(f.getName()));
-
-                // set Tag as hash code
-                Integer h = f.hashCode();
-                f.setCode(h);
-                foodLayout.setTag(h);
-                linearLayout.addView(foodLayout, index);
-
-                // when food layout clicked:
-                foodLayout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        LinearLayout foodInfoLayout;
-                        if(f.getLevel() >= 2) {
-                            foodInfoLayout = (LinearLayout) inflater.inflate
-                                    (R.layout.food_information, linearLayout, false);
-                        } else {
-                            foodInfoLayout = (LinearLayout) inflater.inflate
-                                    (R.layout.food_information_text_color_black, linearLayout, false);
-                        }
-                        LinearLayout base = (LinearLayout)foodInfoLayout.getChildAt(0);
-                        // setting food information layout
-                        setFoodInformationLayout(base, f);
-                        parentLayout.addView(foodInfoLayout);
-
-                        // when food info layout clicked
-                        foodInfoLayout.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                parentLayout.removeView(foodInfoLayout);
-                            }
-                        });
-                    }
-                });
-
-                // when food layout's delete button clicked:
-                ImageView icDelete = (ImageView)foodLayout.getChildAt(0);
-                icDelete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ((LinearLayout) foodLayout.getParent()).removeView(foodLayout);
-                        foodList.remove(f);
-                    }
-                });
             }
         });
-
-
-    }
-
-    public ArrayList<String> getFoodList(){
-        return foodList;
-    }
-
-    public LinearLayout inflateFoodButton
-            (LinearLayout linearLayout, LayoutInflater inflater, Food f){
-        LinearLayout foodLayout;
-        if(f.getLeftDate()>=20){foodLayout = (LinearLayout) inflater.inflate
-                (R.layout.food_button_basic, linearLayout, false);}
-        else if(f.getLeftDate()>=10){foodLayout = (LinearLayout) inflater.inflate
-                (R.layout.food_button_careful, linearLayout, false);}
-        else if(f.getLeftDate()>=5){foodLayout = (LinearLayout) inflater.inflate
-                (R.layout.food_button_caution, linearLayout, false);}
-        else if(f.getLeftDate()>=0){foodLayout = (LinearLayout) inflater.inflate
-                (R.layout.food_button_danger, linearLayout, false);}
-        else {foodLayout = (LinearLayout) inflater.inflate
-                (R.layout.food_button_rotten, linearLayout, false);}
-        return foodLayout;
-    }
-
-    public void setFoodInformationLayout(LinearLayout base, Food f){
-        base.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(f.getColor())));
-        // setting first linear layout in food_information.xml
-        LinearLayout ll = (LinearLayout)base.getChildAt(0);
-        ((TextView)ll.getChildAt(0)).setText(f.getName());
-        ((TextView)ll.getChildAt(1)).setText("bla bla bla bla");
-        ((TextView)ll.getChildAt(2)).setText(f.getDescription());
-        // setting second linear layout in food_information
-        ll = (LinearLayout)base.getChildAt(1);
-        ((TextView)ll.getChildAt(1)).setText(String.format("%d일",f.getBuyDate()));
-        // third one
-        ll = (LinearLayout) base.getChildAt(2);
-        ((TextView)ll.getChildAt(1)).setText(f.getStorageType().toString());
-        // forth one
-        ll = (LinearLayout) base.getChildAt(3);
-        ((TextView)ll.getChildAt(1)).setText(String.format("%d일", f.getDueDate()));
     }
 }

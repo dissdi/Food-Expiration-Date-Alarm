@@ -56,10 +56,6 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-
-
-
-
     // random food generator
     public ArrayList<Object> getRandomFood(){
         Random random = new Random();
