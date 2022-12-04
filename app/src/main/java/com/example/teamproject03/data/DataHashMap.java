@@ -1,13 +1,11 @@
 package com.example.teamproject03.data;
 
-import android.util.Log;
+import com.example.teamproject03.model.Food;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
-public class dataHashMap {
+public class DataHashMap {
     private HashMap<String, Integer> resultHashMap = new HashMap<>();
     private ArrayList<String> arrayList;
 
@@ -19,9 +17,17 @@ public class dataHashMap {
         put("요거트", 7);
     }};
 
-    dataHashMap(ArrayList<String> arrayList) {
+    public DataHashMap(ArrayList<String> arrayList) {
         // 우리가 가져온 arrayList
         this.arrayList = arrayList;
+    }
+
+    public DataHashMap() {
+        this.arrayList = new ArrayList<>();
+    }
+
+    public void setArrayList(ArrayList<String> list){
+        arrayList.addAll(list);
     }
 
     public HashMap<String, Integer> setting() {
@@ -36,6 +42,10 @@ public class dataHashMap {
         return resultHashMap;
     }
 
-
-
+    public int getLeftDate(String name){
+        for(String key : setHashMap.keySet()) {
+            if( name.contains(key)) return setHashMap.get(key);
+        }
+        return 10; // 없을 경우
+    }
 }

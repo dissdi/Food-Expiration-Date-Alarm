@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.teamproject03.MainActivity;
 import com.example.teamproject03.R;
+import com.example.teamproject03.data.DataHashMap;
 import com.example.teamproject03.data.DatabaseHelper;
 import com.example.teamproject03.model.Food;
 
@@ -86,13 +87,14 @@ public class CheckingActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CaptureActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 // update database with each food's information(due date, storage type, etc...)
                 ArrayList<Food> foodList = new ArrayList<>();
                 int count = scrollLinearLayout.getChildCount();
                 View v = null;
+
                 for(int i=0; i<count; i++){
                     v = scrollLinearLayout.getChildAt(i);
                     String name = ((EditText)v.findViewById(R.id.name)).getText().toString();
@@ -105,6 +107,7 @@ public class CheckingActivity extends AppCompatActivity {
                     f.setLeftDate(getLeftDate(name));
                     foodList.add(f);
                 }
+
                 // add SQL food items
                 DatabaseHelper foodDBHelper = new DatabaseHelper(getApplicationContext());
                 SQLiteDatabase db = foodDBHelper.getWritableDatabase();
@@ -126,7 +129,7 @@ public class CheckingActivity extends AppCompatActivity {
 
     int getLeftDate(String name){
         // 함수 구현 필요 mapping해서 거시기하기
-        int date = 10;
-        return date;
+        DataHashMap dataHM = new DataHashMap();
+        return dataHM.getLeftDate(name);
     }
 }
