@@ -3,7 +3,6 @@ package com.example.teamproject03.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.BaseColumns;
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -18,6 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String _ID = "id";
     public static final String NAME = "foodName";
     public static final String DUE_DATE = "dueDate";
+    public static final String STORAGE_TYPE = "storageType";
 
     // Constructor
     public DatabaseHelper(@Nullable Context context)
@@ -30,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     NAME + " TEXT NOT NULL," +
                     DUE_DATE + "DATE" +
+                    STORAGE_TYPE + "TEXT NOT NULL" +
                 ")";
 
         db.execSQL(CREATE_FOODS_TABLE);

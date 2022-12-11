@@ -122,9 +122,6 @@ public class CheckingActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
     int getLeftDate(String name){
