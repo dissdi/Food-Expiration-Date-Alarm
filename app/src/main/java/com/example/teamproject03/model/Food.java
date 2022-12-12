@@ -10,6 +10,11 @@ public class Food {
     private int level;
     static final String[] COLOR = {"#DDDDDD", "#FFDBDB", "#FF6363", "#FF0000", "#111111"};
     private String color;
+
+    public Food(String name){
+        this.name = name;
+    }
+
     public Food(int id, String name, String dueDate){
         this.id = id;
         this.name = name;
@@ -17,6 +22,7 @@ public class Food {
         setDescription();
         setColor();
     }
+
 
     public void setName(String name)    {
         this.name = name;

@@ -11,8 +11,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.teamproject03.MainActivity;
 import com.example.teamproject03.R;
+import com.example.teamproject03.data.DBHelper;
+import com.example.teamproject03.data.DBManager;
 import com.example.teamproject03.data.DataHashMap;
-import com.example.teamproject03.data.DatabaseHelper;
 import com.example.teamproject03.model.Food;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class CheckingActivity extends AppCompatActivity {
     TextView recaptureButton;
     TextView addButton;
     LayoutInflater inflater;
+    DBManager dbManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class CheckingActivity extends AppCompatActivity {
         cancelButton = (TextView) findViewById(R.id.cancelButton);
         recaptureButton = (TextView) findViewById(R.id.recaptureButton);
         addButton = (TextView) findViewById(R.id.addButton);
+        dbManager = new DBManager(this);
 
         ArrayList<String> captureList = (ArrayList<String>) getIntent().getSerializableExtra("captureList");
         inflater = LayoutInflater.from(this);
@@ -109,7 +112,7 @@ public class CheckingActivity extends AppCompatActivity {
                 }
 
                 // add SQL food items
-                DatabaseHelper foodDBHelper = new DatabaseHelper(getApplicationContext());
+                DBHelper foodDBHelper = new DBHelper(getApplicationContext());
                 SQLiteDatabase db = foodDBHelper.getWritableDatabase();
                 Collections.sort(foodList, new Comparator<Food>() {
                     @Override
@@ -117,6 +120,9 @@ public class CheckingActivity extends AppCompatActivity {
                         return o1.getLeftDate().compareTo(o2.getLeftDate());
                     }
                 });
+                for(Food f : foodList){
+//                    dbManager.addFood(food);
+                }
 
                 startActivity(intent);
             }

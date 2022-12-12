@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBManager {
-    private DatabaseHelper dbHelper;
+    private DBHelper dbHelper;
     private Context context;
     private SQLiteDatabase database;
 
     public DBManager(Context context) { this.context = context; }
 
     public DBManager open() throws SQLException {
-        dbHelper = new DatabaseHelper(context);
+        dbHelper = new DBHelper(context);
         database = dbHelper.getWritableDatabase();
         return this;
     }
@@ -29,17 +29,17 @@ public class DBManager {
 
     public void insert(Food f) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper._ID, f.getName());
-        contentValues.put(DatabaseHelper.DUE_DATE, f.getLeftDate());
-        database.insert(DatabaseHelper.TABLE_NAME, null, contentValues);
+        contentValues.put(DBHelper._ID, f.getName());
+        contentValues.put(DBHelper.DUE_DATE, f.getLeftDate());
+        database.insert(DBHelper.TABLE_NAME, null, contentValues);
     }
 
     public int upgrade(long _id, Food f) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.DATABASE_NAME, f.getName());
-        contentValues.put(DatabaseHelper.DUE_DATE, f.getLeftDate());
-        int i = database.update(DatabaseHelper.TABLE_NAME, contentValues,
-                DatabaseHelper._ID + " = " + _id, null);
+        contentValues.put(DBHelper.DATABASE_NAME, f.getName());
+        contentValues.put(DBHelper.DUE_DATE, f.getLeftDate());
+        int i = database.update(DBHelper.TABLE_NAME, contentValues,
+                DBHelper._ID + " = " + _id, null);
         return i;
     }
 
@@ -60,6 +60,6 @@ public class DBManager {
     }
 
     public void delete(long _id) {
-        database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper._ID + "=" + _id, null);
+        database.delete(DBHelper.TABLE_NAME, DBHelper._ID + "=" + _id, null);
     }
 }
