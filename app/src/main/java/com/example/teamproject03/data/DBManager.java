@@ -9,13 +9,18 @@ import com.example.teamproject03.model.Food;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class DBManager {
     private DBHelper dbHelper;
     private Context context;
     private SQLiteDatabase database;
 
-    public DBManager(Context context) { this.context = context; }
+    UUIDgeneration uuid = new UUIDgeneration();
+    public DBManager(Context context) {
+        this.context = context;
+        this.dbHelper = new DBHelper(context);
+    }
 
     public DBManager open() throws SQLException {
         dbHelper = new DBHelper(context);
@@ -28,13 +33,15 @@ public class DBManager {
     }
 
     public void insert(Food f) {
+        f.setID(uuid.getUUID());
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DBHelper._ID, f.getName());
+        contentValues.put(DBHelper.UUID, f.getID());
         contentValues.put(DBHelper.DUE_DATE, f.getLeftDate());
+        contentValues.put(DBHelper.STORAGE_TYPE, f.getStorageType());
         database.insert(DBHelper.TABLE_NAME, null, contentValues);
     }
 
-    public int upgrade(long _id, Food f) {
+    public int upgrade(String _id, Food f) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DBHelper.DATABASE_NAME, f.getName());
         contentValues.put(DBHelper.DUE_DATE, f.getLeftDate());
@@ -44,22 +51,23 @@ public class DBManager {
     }
 
     public List<Food> getFoodList() {
-        List<Food> list = new ArrayList<Food>();
+        ArrayList<Food> list = new ArrayList<Food>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query("foods", new String[]{"_id", "name", "due_date"},
-                null, null, null, null, "due_date");
+        Cursor cursor = db.query("foods", new String[]{"_id", "uuid", "foodName", "dueDate", "storageType"},
+                null, null, null, null, "dueDate");
         while(cursor.moveToNext()) {
             Food food = null;
-            int id = cursor.getInt(0);
-            String name = cursor.getString(1);
-            String dueDate = cursor.getString(2);
-            food = new Food(id, name, dueDate);
+            String uuid = cursor.getString(1);
+            String name = cursor.getString(2);
+            String dueDate = cursor.getString(3);
+            food = new Food(uuid, name, dueDate);
             list.add(food);
         }
         return list;
     }
 
-    public void delete(long _id) {
+    public void delete(String _id) {
         database.delete(DBHelper.TABLE_NAME, DBHelper._ID + "=" + _id, null);
     }
 }
+

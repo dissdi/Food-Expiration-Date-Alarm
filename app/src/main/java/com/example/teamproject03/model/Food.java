@@ -1,7 +1,7 @@
 package com.example.teamproject03.model;
 
 public class Food {
-    private int id;
+    private String id;
     private String name;
     private String dueDate;
     private int leftDate;
@@ -15,7 +15,7 @@ public class Food {
         this.name = name;
     }
 
-    public Food(int id, String name, String dueDate){
+    public Food(String id, String name, String dueDate){
         this.id = id;
         this.name = name;
         this.dueDate = dueDate;
@@ -27,7 +27,7 @@ public class Food {
     public void setName(String name)    {
         this.name = name;
     }
-
+    public void setID(String id) {this.id = id; }
     public void setLeftDate(int leftDate){
         this.leftDate = leftDate;
     }
@@ -67,7 +67,9 @@ public class Food {
 
     public String getName()         { return name; }
     public Integer getLeftDate()    { return leftDate; }
+    public String getID()           { return id; }
     public String getStorageType()  { return storageType; }
     public String getColor()        {return color; }
+    public String getDate()         { return dueDate; }
     public int getLevel()           { return level; }
 }

@@ -14,7 +14,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "foods";
 
     // Food Table Columns
-    public static final String _ID = "id";
+    public static final String _ID = "_id";
+    public static final String UUID = "uuid";
     public static final String NAME = "foodName";
     public static final String DUE_DATE = "dueDate";
     public static final String STORAGE_TYPE = "storageType";
@@ -25,9 +26,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db ) {
-        String CREATE_FOODS_TABLE = "CREATE TABLE " + TABLE_NAME +
+        String CREATE_FOODS_TABLE =
+                "CREATE TABLE IF NOT EXISTS FOODS" + TABLE_NAME +
                 "(" +
                     _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    UUID + "TEXT NOT NULL UNIQUE, " +
                     NAME + " TEXT NOT NULL," +
                     DUE_DATE + "DATE" +
                     STORAGE_TYPE + "TEXT NOT NULL" +

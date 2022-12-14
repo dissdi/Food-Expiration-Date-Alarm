@@ -121,9 +121,8 @@ public class CheckingActivity extends AppCompatActivity {
                     }
                 });
                 for(Food f : foodList){
-//                    dbManager.addFood(food);
+                    dbManager.insert(f);
                 }
-
                 startActivity(intent);
             }
         });
