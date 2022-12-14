@@ -1,5 +1,6 @@
 package com.example.teamproject03.data;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public void onBindViewHolder(@NonNull @NotNull FoodAdapter.FoodViewHolder viewHolder, int position) {
         Food f = list.get(position);
         viewHolder.setFood(f);
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void addFoods(ArrayList<Food>list){
+        this.list.addAll(list);
     }
 
     @Override

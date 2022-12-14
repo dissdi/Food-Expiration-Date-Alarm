@@ -16,7 +16,6 @@ public class DBManager {
     private Context context;
     private SQLiteDatabase database;
 
-    UUIDgeneration uuid = new UUIDgeneration();
     public DBManager(Context context) {
         this.context = context;
         this.dbHelper = new DBHelper(context);
@@ -33,12 +32,12 @@ public class DBManager {
     }
 
     public void insert(Food f) {
-        f.setID(uuid.getUUID());
         ContentValues contentValues = new ContentValues();
         contentValues.put(DBHelper.UUID, f.getID());
+        contentValues.put(DBHelper.NAME, f.getName());
         contentValues.put(DBHelper.DUE_DATE, f.getLeftDate());
         contentValues.put(DBHelper.STORAGE_TYPE, f.getStorageType());
-        database.insert(DBHelper.TABLE_NAME, null, contentValues);
+        dbHelper.getWritableDatabase().insert(DBHelper.TABLE_NAME, null, contentValues);
     }
 
     public int upgrade(String _id, Food f) {

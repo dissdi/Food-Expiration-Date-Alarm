@@ -1,5 +1,6 @@
 package com.example.teamproject03;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -45,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent){
+        super.onActivityResult(requestCode, resultCode, intent);
+        FoodListInfo foodListInfo = FoodListInfo.getInstance();
+        foodAdapter.addFoods(foodListInfo.getFoodList());
+        foodAdapter.notifyDataSetChanged();
     }
 }
 

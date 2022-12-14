@@ -27,7 +27,7 @@ public class Food {
     public void setName(String name)    {
         this.name = name;
     }
-    public void setID(String id) {this.id = id; }
+    public void setID(String id) { this.id = id; }
     public void setLeftDate(int leftDate){
         this.leftDate = leftDate;
     }
