@@ -15,7 +15,6 @@ public class DataHashMap {
         put("귤", 90);
         put("요구르트" , 30);
         put("삼겹살", 3);
-
         put("요거트", 7);
         put("양파", 15);
         put("깻잎", 50);
