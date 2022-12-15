@@ -83,6 +83,7 @@ public class Food {
     public Integer getLeftDate()    { return leftDate; }
     public String getID()           { return id; }
     public String getStorageType()  { return storageType; }
+    public String getDescription() { return description; }
     public String getColor()        {return color; }
     public String getDate()         { return dueDate; }
     public int getLevel()           { return level; }

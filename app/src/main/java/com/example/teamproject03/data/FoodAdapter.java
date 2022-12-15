@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
-    private ArrayList<Food> list = new ArrayList<>();
+    public ArrayList<Food> list = new ArrayList<>();
     DBHelper dbHelper;
     DBManager dbManager;
 
