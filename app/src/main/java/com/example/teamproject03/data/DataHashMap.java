@@ -12,8 +12,9 @@ public class DataHashMap {
     HashMap<String, Integer> setHashMap = new HashMap<String, Integer>(){{
         put("우유",10);
         put("milk", 10);
-        put("귤", 90);
-        put("요구르트" , 30);
+        put("귤", 20);
+        put("요구르트" , 10);
+        put("바나나", 15);
         put("삼겹살", 3);
         put("요거트", 7);
         put("양파", 15);
