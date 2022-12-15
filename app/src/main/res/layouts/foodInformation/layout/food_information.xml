@@ -36,14 +36,6 @@
                 android:textColor="@color/white"
         ></TextView>
         <TextView
-                android:id="@+id/expectation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="blah blah blah blah blah blah"
-                android:textSize="15sp"
-                android:textColor="@color/white"
-        ></TextView>
-        <TextView
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,31 +44,7 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="80dp"
                 android:textColor="@color/white"
-        ></TextView>
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="구매일: "
-                android:textSize="20dp"
-                android:textColor="@color/white"
-        ></TextView>
-        <TextView
-                android:id="@+id/buyDateText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="20dp"
-                android:textColor="@color/white"
-        ></TextView>
-        </LinearLayout>
-
+        ></TextView> </LinearLayout>
         <LinearLayout
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
@@ -107,7 +75,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="예상소비기한: "
+                    android:text="남은 소비기한: "
                     android:textSize="20dp"
                     android:textColor="@color/white"
             ></TextView>
