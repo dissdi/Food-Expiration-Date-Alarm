@@ -1,44 +1,39 @@
 package com.example.teamproject03.model;
 
 public class Food {
+    private String id;
     private String name;
-//    private int buyDate;
-//    private int curDate;
-//    private int dueDate;
+    private String dueDate;
     private int leftDate;
     private String storageType;
-//    private int code;
     private String description;
     private int level;
     static final String[] COLOR = {"#DDDDDD", "#FFDBDB", "#FF6363", "#FF0000", "#111111"};
     private String color;
+
     public Food(String name){
         this.name = name;
-//        this.buyDate = buyDate;
-//        this.curDate = buyDate; // change later
-//        this.dueDate = dueDate;
-//        setLeftDate();
+    }
+
+    public Food(String id, String name, String dueDate){
+        this.id = id;
+        this.name = name;
+        this.dueDate = dueDate;
         setDescription();
         setColor();
     }
 
+
     public void setName(String name)    {
         this.name = name;
     }
-
+    public void setID(String id) {this.id = id; }
     public void setLeftDate(int leftDate){
         this.leftDate = leftDate;
     }
-//    public void setCurDate(int curDate){
-//        this.curDate = curDate;
-//    }
-//    public void setDueDate(int dueDate){
-//        this.dueDate =  dueDate;
-//    }
     public void setStorageType(String storageType){
         this.storageType = storageType;
     }
-//    public void setCode(int hash) { this.code = hash; }
     public void setDescription(){
         if(leftDate>=20) {
             this.description = "안전";
@@ -72,12 +67,9 @@ public class Food {
 
     public String getName()         { return name; }
     public Integer getLeftDate()    { return leftDate; }
-//    public Integer getCurDate()     { return curDate; }
-//    public Integer getDueDate()     { return dueDate; }
-//    public Integer getBuyDate()     { return buyDate; }
+    public String getID()           { return id; }
     public String getStorageType()  { return storageType; }
-//    public Integer getHashCode()    { return code; }
-    public String getDescription()  { return description; }
     public String getColor()        {return color; }
+    public String getDate()         { return dueDate; }
     public int getLevel()           { return level; }
 }

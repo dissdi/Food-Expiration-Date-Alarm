@@ -3,10 +3,9 @@ package com.example.teamproject03.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.BaseColumns;
 import androidx.annotation.Nullable;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper {
     // Database info
     public static final String DATABASE_NAME = "foodDatabase";
     public static final int DATABASE_VERSION = 1;
@@ -15,21 +14,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "foods";
 
     // Food Table Columns
-    public static final String _ID = "id";
+    public static final String _ID = "_id";
+    public static final String UUID = "uuid";
     public static final String NAME = "foodName";
     public static final String DUE_DATE = "dueDate";
+    public static final String STORAGE_TYPE = "storageType";
 
     // Constructor
-    public DatabaseHelper(@Nullable Context context)
+    public DBHelper(@Nullable Context context)
     { super(context, DATABASE_NAME, null, DATABASE_VERSION); }
 
     @Override
     public void onCreate(SQLiteDatabase db ) {
-        String CREATE_FOODS_TABLE = "CREATE TABLE " + TABLE_NAME +
+        String CREATE_FOODS_TABLE =
+                "CREATE TABLE IF NOT EXISTS FOODS" + TABLE_NAME +
                 "(" +
                     _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    UUID + "TEXT NOT NULL UNIQUE, " +
                     NAME + " TEXT NOT NULL," +
                     DUE_DATE + "DATE" +
+                    STORAGE_TYPE + "TEXT NOT NULL" +
                 ")";
 
         db.execSQL(CREATE_FOODS_TABLE);

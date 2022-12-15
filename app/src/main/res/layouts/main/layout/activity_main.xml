@@ -4,7 +4,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/parentLayout"
 >
 <LinearLayout
@@ -24,19 +24,12 @@
                 android:textSize="30dp"
                 />
     </LinearLayout>
-    <ScrollView
-            xmlns:app="http://schemas.android.com/app"
-            android:id="@+id/scrollView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-        <LinearLayout android:id="@+id/linearLayout"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="vertical"
-                      android:gravity="bottom"
-                      app:stackFromEnd="true"
-                      app:reverseLayout="true"
-                      android:paddingHorizontal="30dp">
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/recyclerview"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
             <LinearLayout android:id="@+id/addButton"
                           android:layout_width="match_parent"
                           android:layout_height="50dp"
@@ -57,8 +50,5 @@
                           android:textStyle="bold"
                           android:gravity="center_vertical"/>
             </LinearLayout>
-        </LinearLayout>>
-    </ScrollView>
-
-</LinearLayout>
+    </LinearLayout>
 </FrameLayout>
