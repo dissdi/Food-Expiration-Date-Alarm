@@ -16,7 +16,6 @@ public class DBManager {
     private Context context;
     private SQLiteDatabase database;
 
-    UUIDgeneration uuid = new UUIDgeneration();
     public DBManager(Context context) {
         this.context = context;
         this.dbHelper = new DBHelper(context);
@@ -33,12 +32,12 @@ public class DBManager {
     }
 
     public void insert(Food f) {
-        f.setID(uuid.getUUID());
         ContentValues contentValues = new ContentValues();
         contentValues.put(DBHelper.UUID, f.getID());
+        contentValues.put(DBHelper.NAME, f.getName());
         contentValues.put(DBHelper.DUE_DATE, f.getLeftDate());
         contentValues.put(DBHelper.STORAGE_TYPE, f.getStorageType());
-        database.insert(DBHelper.TABLE_NAME, null, contentValues);
+        dbHelper.getWritableDatabase().insert(DBHelper.TABLE_NAME, null, contentValues);
     }
 
     public int upgrade(String _id, Food f) {
@@ -59,15 +58,17 @@ public class DBManager {
             Food food = null;
             String uuid = cursor.getString(1);
             String name = cursor.getString(2);
-            String dueDate = cursor.getString(3);
-            food = new Food(uuid, name, dueDate);
+            String leftDate = cursor.getString(3);
+            String storageType = cursor.getString(4);
+            food = new Food(uuid, name, leftDate, storageType);
             list.add(food);
         }
         return list;
     }
 
-    public void delete(String _id) {
-        database.delete(DBHelper.TABLE_NAME, DBHelper._ID + "=" + _id, null);
+    public void delete(String uuid) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(DBHelper.TABLE_NAME, DBHelper.UUID + " = ?", new String[]{uuid});
     }
 }
 

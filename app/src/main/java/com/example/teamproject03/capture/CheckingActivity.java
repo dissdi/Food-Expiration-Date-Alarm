@@ -1,5 +1,6 @@
 package com.example.teamproject03.capture;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
@@ -9,11 +10,13 @@ import android.view.View;
 import android.widget.*;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.teamproject03.FoodListInfo;
 import com.example.teamproject03.MainActivity;
 import com.example.teamproject03.R;
 import com.example.teamproject03.data.DBHelper;
 import com.example.teamproject03.data.DBManager;
 import com.example.teamproject03.data.DataHashMap;
+import com.example.teamproject03.data.UUIDgeneration;
 import com.example.teamproject03.model.Food;
 
 import java.util.ArrayList;
@@ -90,9 +93,6 @@ public class CheckingActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
                 // update database with each food's information(due date, storage type, etc...)
                 ArrayList<Food> foodList = new ArrayList<>();
                 int count = scrollLinearLayout.getChildCount();
@@ -104,8 +104,9 @@ public class CheckingActivity extends AppCompatActivity {
                     String storageType = ((Spinner)v.findViewById(R.id.spinner)).getSelectedItem().toString();
                     boolean cautionChecked = ((CheckBox)v.findViewById(R.id.checkBox)).isChecked();
                     Food f = new Food(name);
+                    UUIDgeneration uuid = new UUIDgeneration();
+                    f.setID(uuid.getUUID());
                     f.setStorageType(storageType);
-                    // Left date 몇일이었더라?
                     if(cautionChecked) f.setLeftDate(10);
                     f.setLeftDate(getLeftDate(name));
                     foodList.add(f);
@@ -123,6 +124,10 @@ public class CheckingActivity extends AppCompatActivity {
                 for(Food f : foodList){
                     dbManager.insert(f);
                 }
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                FoodListInfo foodListInfo = FoodListInfo.getInstance();
+                foodListInfo.setFoodList(foodList);
                 startActivity(intent);
             }
         });

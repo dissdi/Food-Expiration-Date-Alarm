@@ -15,10 +15,19 @@ public class Food {
         this.name = name;
     }
 
-    public Food(String id, String name, String dueDate){
+    public Food(String id, String name, String leftDate){
         this.id = id;
         this.name = name;
-        this.dueDate = dueDate;
+        this.leftDate = Integer.parseInt(leftDate);
+        setDescription();
+        setColor();
+    }
+
+    public Food(String id, String name, String leftDate, String storageType){
+        this.id = id;
+        this.name = name;
+        this.leftDate = Integer.parseInt(leftDate);
+        this.storageType = storageType;
         setDescription();
         setColor();
     }
@@ -27,7 +36,7 @@ public class Food {
     public void setName(String name)    {
         this.name = name;
     }
-    public void setID(String id) {this.id = id; }
+    public void setID(String id) { this.id = id; }
     public void setLeftDate(int leftDate){
         this.leftDate = leftDate;
     }
@@ -35,15 +44,20 @@ public class Food {
         this.storageType = storageType;
     }
     public void setDescription(){
-        if(leftDate>=20) {
+        if(storageType.equals("냉동")){
+            this.description = "안전";
+            this.leftDate = 40;
+            this.level = 0;
+        }
+        else if(leftDate>=30) {
             this.description = "안전";
             this.level = 0;
         }
-        else if(leftDate>=7) {
+        else if(leftDate>=15) {
             this.description = "유의";
             this.level = 1;
         }
-        else if(leftDate>=3) {
+        else if(leftDate>=10) {
             this.description = "주의";
             this.level = 2;
         }

@@ -10,11 +10,17 @@ public class DataHashMap {
     private ArrayList<String> arrayList;
 
     HashMap<String, Integer> setHashMap = new HashMap<String, Integer>(){{
-        put("우유",14 + 50);
+        put("우유",10);
+        put("milk", 10);
         put("귤", 90);
         put("요구르트" , 30);
         put("삼겹살", 3);
         put("요거트", 7);
+        put("양파", 15);
+        put("깻잎", 50);
+        put("장아찌", 50);
+        put("브로커리", 7);
+        put("브로콜리", 7);
     }};
 
     public DataHashMap(ArrayList<String> arrayList) {

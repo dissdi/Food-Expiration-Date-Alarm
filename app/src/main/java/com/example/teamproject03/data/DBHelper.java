@@ -27,13 +27,13 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db ) {
         String CREATE_FOODS_TABLE =
-                "CREATE TABLE IF NOT EXISTS FOODS" + TABLE_NAME +
+                "CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
                 "(" +
                     _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    UUID + "TEXT NOT NULL UNIQUE, " +
+                    UUID + " TEXT NOT NULL UNIQUE, " +
                     NAME + " TEXT NOT NULL," +
-                    DUE_DATE + "DATE" +
-                    STORAGE_TYPE + "TEXT NOT NULL" +
+                    DUE_DATE + " DATE, " +
+                    STORAGE_TYPE + " TEXT NOT NULL" +
                 ")";
 
         db.execSQL(CREATE_FOODS_TABLE);
