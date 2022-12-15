@@ -107,7 +107,6 @@ public class CheckingActivity extends AppCompatActivity {
                     UUIDgeneration uuid = new UUIDgeneration();
                     f.setID(uuid.getUUID());
                     f.setStorageType(storageType);
-                    // Left date 몇일이었더라?
                     if(cautionChecked) f.setLeftDate(10);
                     f.setLeftDate(getLeftDate(name));
                     foodList.add(f);

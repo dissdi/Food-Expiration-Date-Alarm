@@ -58,15 +58,17 @@ public class DBManager {
             Food food = null;
             String uuid = cursor.getString(1);
             String name = cursor.getString(2);
-            String dueDate = cursor.getString(3);
-            food = new Food(uuid, name, dueDate);
+            String leftDate = cursor.getString(3);
+            String storageType = cursor.getString(4);
+            food = new Food(uuid, name, leftDate, storageType);
             list.add(food);
         }
         return list;
     }
 
-    public void delete(String _id) {
-        database.delete(DBHelper.TABLE_NAME, DBHelper._ID + "=" + _id, null);
+    public void delete(String uuid) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(DBHelper.TABLE_NAME, DBHelper.UUID + " = ?", new String[]{uuid});
     }
 }
 
